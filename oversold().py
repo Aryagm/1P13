@@ -1,7 +1,7 @@
 def oversold(passenger_list, fleet_list, daily_data_list):
     """
 Returns 2D list of the model of the plane and the # of economy and bussiness passengers 
-with oversold seats for each for in each flight.
+with oversold seats for each flight.
     """
     oversold_business = []
     oversold_economy = []
