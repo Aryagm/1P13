@@ -8,6 +8,8 @@ from layover import layover
 
 def graphical_46(oversold_data, overweight_data, layover_data):
     """
+    Arya Manjaramkar
+    
     Creates a graphical interface summarizing:
     1. Oversold Business and Economy seats
     2. Passengers with Overweight Bags
@@ -66,7 +68,7 @@ def graphical_46(oversold_data, overweight_data, layover_data):
 
         # Add details for the plane inside the frame
         # We need .pack because we are adding widgets to a frame
-        # If we did not pack 
+        # If we did not pack    
         tk.Label(plane_frame, text=plane, font=("Helvetica", 14, "bold"), bg="#e0ffff").pack(anchor="w")
         tk.Label(plane_frame, text=f"Oversold Business Seats: {oversold_b}", bg="#e0ffff").pack(anchor="w", pady=2)
         tk.Label(plane_frame, text=f"Oversold Economy Seats: {oversold_e}", bg="#e0ffff").pack(anchor="w", pady=2)
@@ -81,17 +83,3 @@ def graphical_46(oversold_data, overweight_data, layover_data):
 
     # Start the main GUI loop
     root.mainloop()
-
-
-# Load data from external files
-pdata = passenger_data("passenger_data_v1.txt")
-fdata = fleet_data("fleet_data.txt")
-
-# Process data using the functions and data
-oversold_data = oversold(pdata, fdata, daily_data(pdata))
-overweight_data = overweight(pdata, fdata)
-layover_data = layover(pdata, fdata)
-print(oversold_data)
-
-# Launch the graphical interface by passing the processed data
-graphical_46(oversold_data, overweight_data, layover_data)
