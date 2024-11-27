@@ -1,6 +1,6 @@
 """
 Aarohan Singh
-"""\
+"""
 
 def time_delay(passengerList, fleetList):
     #Initializes the list which stores the final result
