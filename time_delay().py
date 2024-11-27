@@ -10,7 +10,6 @@ def time_delay(passengerList, fleetList):
             if passenger[2] == gate and passenger [7] == "Layover" and passenger[8] == "Late":
                 late_layover_count += 1
                 
-     
         planelatelayover.append([plane_model, late_layover_count])
         
     return planelatelayover
