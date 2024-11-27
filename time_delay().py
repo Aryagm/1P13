@@ -1,5 +1,5 @@
 def time_delay(passengerList, fleetList):
-    planelatelayover=[]
+    planelatelayover = []
     
     for plane in fleetList:
         plane_model = plane[0]
