@@ -6,7 +6,7 @@ from oversold import oversold
 from layover import layover
 
 
-def graphical_teamID(oversold_data, overweight_data, layover_data):
+def graphical_46(oversold_data, overweight_data, layover_data):
     """
     Creates a graphical interface summarizing:
     1. Oversold Business and Economy seats
@@ -15,10 +15,16 @@ def graphical_teamID(oversold_data, overweight_data, layover_data):
     """
     # Unpack the provided data into separate components
     oversold_business, oversold_economy = oversold_data
+    
+    # we dont caer about passenger output so only get index 1 which is the fleet output
     fleet_overweight = overweight_data[1]
+    
+    # we dont care about passenger output so only get index 0 which is the plane output
     plane_layover = layover_data[0]
 
+    
     # Convert data into dictionaries for quick lookups
+    # Each dictionary will have plane model as key and the corresponding value
     oversold_business_dict = {item[0]: item[1] for item in oversold_business}
     oversold_economy_dict = {item[0]: item[1] for item in oversold_economy}
     overweight_dict = {item[0]: item[1] for item in fleet_overweight}
@@ -27,10 +33,7 @@ def graphical_teamID(oversold_data, overweight_data, layover_data):
     # Collect all unique plane models across the data
     # Set gets all unique values, then convert back to a list
     # We get all unique plane models by combining all keys from the dictionaries
-    plane_models = list(set(oversold_business_dict.keys()) |
-                        set(oversold_economy_dict.keys()) |
-                        set(overweight_dict.keys()) |
-                        set(layover_dict.keys()))
+    plane_models = list(layover_dict.keys())
 
     # Initialize the main window for the GUI
     root = tk.Tk()
@@ -62,6 +65,8 @@ def graphical_teamID(oversold_data, overweight_data, layover_data):
         plane_frame.grid(row=row, column=col, padx=10, pady=10, sticky="n")
 
         # Add details for the plane inside the frame
+        # We need .pack because we are adding widgets to a frame
+        # If we did not pack 
         tk.Label(plane_frame, text=plane, font=("Helvetica", 14, "bold"), bg="#e0ffff").pack(anchor="w")
         tk.Label(plane_frame, text=f"Oversold Business Seats: {oversold_b}", bg="#e0ffff").pack(anchor="w", pady=2)
         tk.Label(plane_frame, text=f"Oversold Economy Seats: {oversold_e}", bg="#e0ffff").pack(anchor="w", pady=2)
@@ -77,21 +82,16 @@ def graphical_teamID(oversold_data, overweight_data, layover_data):
     # Start the main GUI loop
     root.mainloop()
 
-### USAGE ##
 
 # Load data from external files
 pdata = passenger_data("passenger_data_v1.txt")
 fdata = fleet_data("fleet_data.txt")
 
-# Process data to extract oversold, overweight, and layover information
-oversold_business, oversold_economy = oversold(pdata, fdata, daily_data(pdata))
-passenger_overweight, fleet_overweight = overweight(pdata, fdata)
-plane_layover, passenger_gate = layover(pdata, fdata)
+# Process data using the functions and data
+oversold_data = oversold(pdata, fdata, daily_data(pdata))
+overweight_data = overweight(pdata, fdata)
+layover_data = layover(pdata, fdata)
+print(oversold_data)
 
-# Organize data into tuples for use in the GUI function
-oversold_data = (oversold_business, oversold_economy)
-overweight_data = (passenger_overweight, fleet_overweight)
-layover_data = (plane_layover, passenger_gate)
-
-# Launch the graphical interface
-graphical_teamID(oversold_data, overweight_data, layover_data)
+# Launch the graphical interface by passing the processed data
+graphical_46(oversold_data, overweight_data, layover_data)
