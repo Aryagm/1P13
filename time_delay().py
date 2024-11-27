@@ -1,12 +1,12 @@
-def time_delay(passengerList, fleetList):
+def time_delay(passenger_list, fleet_list):
     planelatelayover = []
     
-    for plane in fleetList:
+    for plane in fleet_list:
         plane_model = plane[0]
         gate = plane[4]
         late_layover_count = 0
         
-        for passenger in passengerList:
+        for passenger in passenger_list:
             if passenger[2] == gate and passenger [7] == "Layover" and passenger[8] == "Late":
                 late_layover_count += 1
                 
