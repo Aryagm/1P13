@@ -21,8 +21,8 @@ plane model & oversold seat count.
                 economy_capacity = int(plane[2])
 
                 #calculate oversold seats for bussiness and economy
-                business_oversold = max(0, business_count - business_capacity)
-                economy_oversold = max(0, economy_count - economy_capacity)
+                business_oversold = business_count - business_capacity
+                economy_oversold = economy_count - economy_capacity
 
                 #append plane model and count to the respective list
                 if business_oversold > 0:
