@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 12 15:45:32 2024
-
-@author: aaroh
-"""
-
 def time_delay(passengerList, fleetList):
     planelatelayover=[]
     
