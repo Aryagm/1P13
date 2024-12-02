@@ -17,7 +17,7 @@ scanner = barcode_checker()
 # STUDENT CODE BEGINS
 first = True
 
-motor_spin_time = 4
+motor_spin_time = 8
 
 while True:
     result = scanner.barcode_check()
@@ -37,11 +37,13 @@ while True:
         arm.control_gripper(-5)
         
     else:
-        bot.rotate_stepper_cw(motor_spin_time)
+        for i in range(8):
+            bot.rotate_stepper_cw(motor_spin_time)
         time.sleep(2)
         arm.move_arm(0.412, -0.21, 0.407)
         arm.control_gripper(-5)
-        bot.rotate_stepper_ccw(motor_spin_time)
+        for i in range(8):
+            bot.rotate_stepper_ccw(motor_spin_time)
         time.sleep(2)
 
     table.rotate_table_speed(0.2)
